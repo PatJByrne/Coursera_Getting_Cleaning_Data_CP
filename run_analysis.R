@@ -13,42 +13,40 @@ run_analysis <- function(file_location){
   #Runs slow, but it works, I guess.
   
   print('Reading data...')
-  train_subj <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/train/subject_train.txt")
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/train/subject_train.txt done")
-  test_subj <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/test/subject_test.txt")
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/test/subject_test.txt done")
+  train_subj <- read.table(paste(file_location,"/UCI HAR Dataset/train/subject_train.txt",sep=''))
+  print(paste(file_location,"/UCI HAR Dataset/train/subject_train.txt done",sep=''))
+  test_subj <- read.table(paste(file_location,"/UCI HAR Dataset/test/subject_test.txt",sep=''))
+  print(paste(file_location,"/UCI HAR Dataset/test/subject_test.txt done",sep=''))
   subj <- rbind(train_subj,test_subj)
   for(i in seq(length(subj[,1]))){
     subj[i,1] <- sprintf("%02s",subj[i,1])
-    #mmean[,Subject[i]]<-sprintf("%02s",mmean[,Subject[i]])
-    #m[,Subject[i]]<-sprintf("%02s",m[,Subject[i]])
   }
   
   
   rm(train_subj,test_subj)
   setnames(subj,colnames(subj),"Subject")
   
-  y_trn <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/train/y_train.txt")
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/train/y_train.txt done")
-  y_tst <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/test/y_test.txt")
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/test/y_test.txt done")
+  y_trn <- read.table(paste(file_location,"/UCI HAR Dataset/train/y_train.txt",sep=''))
+  print(paste(file_location,"/UCI HAR Dataset/train/y_train.txt done",sep=''))
+  y_tst <- read.table(paste(file_location,"/UCI HAR Dataset/test/y_test.txt",sep=''))
+  print(paste(file_location,"/UCI HAR Dataset/test/y_test.txt done",sep=''))
   act <- rbind(y_trn,y_tst)
   rm(y_trn,y_tst)
-  act_labels <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/activity_labels.txt",stringsAsFactors = FALSE)
+  act_labels <- read.table(paste(file_location,"/UCI HAR Dataset/activity_labels.txt",sep=''),stringsAsFactors = FALSE)
   
   for (k in seq(nrow(act_labels))){
     act[act == act_labels[k,1]] <- act_labels[k,2]
   }
 
-  features <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/features.txt",stringsAsFactors = FALSE)
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/features.txt done")
+  features <- read.table(paste(file_location,"/UCI HAR Dataset/features.txt",sep=''),stringsAsFactors = FALSE)
+  print(paste(file_location,"/UCI HAR Dataset/features.txt done",sep=''))
   mean_std <- grepl("mean()",features[,2],fixed = TRUE)|grepl("std()",features[,2],fixed = TRUE)
   col_names <- features[mean_std,2]
   
-  X_trn <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/train/X_train.txt")[,mean_std]
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/train/X_train.txt done")
-  X_tst <- read.table("Get_Clean_Data_Course_Project/UCI HAR Dataset/test/X_test.txt")[,mean_std]
-  print("Get_Clean_Data_Course_Project/UCI HAR Dataset/test/X_test.txt done")
+  X_trn <- read.table(paste(file_location,"/UCI HAR Dataset/train/X_train.txt",sep=''))[,mean_std]
+  print(paste(file_location,"/UCI HAR Dataset/train/X_train.txt done",sep=''))
+  X_tst <- read.table(paste(file_location,"/UCI HAR Dataset/test/X_test.txt",sep=''))[,mean_std]
+  print(paste(file_location,"/UCI HAR Dataset/test/X_test.txt done",sep=''))
   X <- rbind(X_trn,X_tst)
   rm(X_trn,X_tst)
   colnames(X) <- gsub('BodyBody','Body',col_names)
@@ -155,8 +153,8 @@ run_analysis <- function(file_location){
   
   rm(subj)
   rm(act)
-  write.table(M,"test.txt",row.name = FALSE)
-  write.table(mmean,'test_mean.txt',row.name=FALSE)
+  write.table(M,"tidy_data.txt",row.name = FALSE)
+  write.table(mmean,'tidy_means.txt',row.name=FALSE)
   print('Done!')
   Mmean
 }
