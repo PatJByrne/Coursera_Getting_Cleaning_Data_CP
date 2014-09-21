@@ -17,5 +17,5 @@ tidy_means:
 ------
 	* Subject - anonymized data.  Each number refers to a different person \performing the tests
 	* Activity - English language description of the type of activity perfo\rmed by the subject when the measurements were taken
-     	* Mean_mean - the average of all the mean measurements in tidy_data.txt
+	* Mean_mean - the average of all the mean measurements in tidy_data.txt
 	* Mean_Std - the average of all the standard deviations in tidy_data.txt
