@@ -2,7 +2,7 @@ CODEBOOK
 =======
 
 Code:
-	tidy_data.txt:
+tidy_data.txt:
 	
 	* Subject - anonymized data.  Each number refers to a different person performing the tests
 	* Activity - English language description of the type of activity performed by the subject when the measurements were taken
@@ -13,7 +13,7 @@ Code:
 	* Analysis_type - Mean - the average of the data gathered, Std Dev - the standard deviation
 	* Meas_Value - the actual value as calculated in the dataset.
 
-	tidy_means
+tidy_means:
 	* Subject - anonymized data.  Each number refers to a different person \
 performing the tests
 	* Activity - English language description of the type of activity perfo\
