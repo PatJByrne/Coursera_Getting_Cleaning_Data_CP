@@ -1,9 +1,8 @@
 CODEBOOK
 =======
 
-Code:
 tidy_data.txt:
-	
+-------	
 	* Subject - anonymized data.  Each number refers to a different person performing the tests
 	* Activity - English language description of the type of activity performed by the subject when the measurements were taken
 	* Domain - time specifies that th measurements were taken in the time domain, f for freqency
@@ -13,7 +12,9 @@ tidy_data.txt:
 	* Analysis_type - Mean - the average of the data gathered, Std Dev - the standard deviation
 	* Meas_Value - the actual value as calculated in the dataset.
 
+
 tidy_means:
+------
 	* Subject - anonymized data.  Each number refers to a different person \
 performing the tests
 	* Activity - English language description of the type of activity perfo\
